@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="32" r="30" fill="url(#grad)" />
+  <path d="M32 16 L28 36 Q28 44 32 44 Q36 44 36 36 L32 16Z" fill="white" opacity="0.9"/>
+  <circle cx="32" cy="14" r="3" fill="#34d399"/>
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="64" y2="64">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#0d9488"/>
+    </linearGradient>
+  </defs>
+</svg>
