@@ -30,10 +30,10 @@ class ApiService {
   delete(endpoint) { return this.request(endpoint, { method: 'DELETE' }); }
 
   // Auth
-  signup(data) { return this.post('/api/auth/signup', data); }
-  login(data) { return this.post('/api/auth/login', data); }
-  getMe() { return this.get('/api/auth/me'); }
-  updateProfile(data) { return this.put('/api/auth/profile', data); }
+  signup(data) { return this.post('/api/signup', data); }
+  login(data) { return this.post('/api/login', data); }
+  getMe() { return this.get('/api/me'); }
+  updateProfile(data) { return this.put('/api/profile', data); }
 
   // Scores
   getScores() { return this.get('/api/scores'); }

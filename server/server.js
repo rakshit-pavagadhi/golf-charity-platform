@@ -6,6 +6,7 @@ const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 
 const app = express();
+const authRoutes = require('./routes/auth');
 
 // Rate limiting
 const limiter = rateLimit({
@@ -50,7 +51,8 @@ app.use(async (req, res, next) => {
 });
 
 // Routes
-app.use('/api/auth', require('./routes/auth'));
+app.use('/api/auth', authRoutes);
+app.use('/api', authRoutes);
 app.use('/api/scores', require('./routes/scores'));
 app.use('/api/draws', require('./routes/draws'));
 app.use('/api/charities', require('./routes/charities'));
