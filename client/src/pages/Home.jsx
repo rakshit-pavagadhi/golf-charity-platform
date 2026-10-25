@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Trophy, Heart, Target, ArrowRight, Star, Users, DollarSign, TrendingUp } from 'lucide-react';
 import api from '../services/api';
+import { getCharityImage } from '../utils/charityImage';
 
 const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } };
 const stagger = { visible: { transition: { staggerChildren: 0.15 } } };
@@ -188,7 +189,7 @@ export default function Home() {
                 <motion.div key={c._id || i} variants={fadeUp}>
                   <Link to={`/charities/${c._id}`} className="glass-card" style={{ display: 'block', textDecoration: 'none', overflow: 'hidden', padding: 0 }}>
                     <div style={{
-                      height: 180, background: `url(${c.image}) center/cover`,
+                      height: 180, background: `url("${getCharityImage(c)}") center/cover`,
                       position: 'relative'
                     }}>
                       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 80, background: 'linear-gradient(transparent, rgba(10,15,28,0.9))' }} />

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CreditCard, Target, Heart, Trophy, DollarSign, Plus, Edit3, Trash2, Calendar, Upload, CheckCircle, XCircle, Clock } from 'lucide-react';
 import api from '../services/api';
+import { getCharityImage } from '../utils/charityImage';
 import toast from 'react-hot-toast';
 
 export default function Dashboard() {
@@ -359,7 +360,7 @@ export default function Dashboard() {
                       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                         <div style={{
                           width: 40, height: 40, borderRadius: 10, overflow: 'hidden', flexShrink: 0,
-                          background: c.image ? `url(${c.image}) center/cover` : 'rgba(52,211,153,0.1)'
+                          background: `url("${getCharityImage(c)}") center/cover`
                         }} />
                         <div>
                           <h4 style={{ fontSize: '0.9rem' }}>{c.name}</h4>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Search, Filter } from 'lucide-react';
 import api from '../services/api';
+import { getCharityImage } from '../utils/charityImage';
 
 const fadeUp = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
 
@@ -80,7 +81,7 @@ export default function Charities() {
               <motion.div key={c._id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}>
                 <Link to={`/charities/${c._id}`} className="glass-card" style={{ display: 'block', textDecoration: 'none', overflow: 'hidden', padding: 0 }}>
-                  <div style={{ height: 200, background: `url(${c.image || 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600'}) center/cover` }}>
+                  <div style={{ height: 200, background: `url("${getCharityImage(c)}") center/cover` }}>
                     {c.featured && (
                       <span style={{
                         position: 'absolute', top: 12, left: 12,

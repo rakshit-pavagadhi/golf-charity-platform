@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="title desc">
+  <title id="title">Community Links Trust</title>
+  <desc id="desc">A community golf course at sunset</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#172554"/>
+      <stop offset="1" stop-color="#0f766e"/>
+    </linearGradient>
+    <linearGradient id="grass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#166534"/>
+      <stop offset="1" stop-color="#064e3b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#sky)"/>
+  <circle cx="920" cy="180" r="90" fill="#fbbf24" opacity=".9"/>
+  <path d="M0 390 Q250 300 500 390 T1200 350 V600 H0Z" fill="url(#grass)"/>
+  <path d="M0 500 Q280 400 570 490 T1200 440 V600 H0Z" fill="#052e16" opacity=".7"/>
+  <path d="M500 600 Q610 470 730 430 Q810 405 900 430 Q780 490 735 600Z" fill="#a7f3d0" opacity=".55"/>
+  <path d="M180 380 Q230 315 280 380" fill="none" stroke="#d1fae5" stroke-width="8"/>
+  <circle cx="280" cy="380" r="8" fill="#f8fafc"/>
+</svg>

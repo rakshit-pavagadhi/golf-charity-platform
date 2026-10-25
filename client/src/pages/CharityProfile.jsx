@@ -4,6 +4,7 @@ import { ArrowLeft, Heart, Users, Calendar, MapPin, ExternalLink } from 'lucide-
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 import toast from 'react-hot-toast';
+import { getCharityImage } from '../utils/charityImage';
 
 export default function CharityProfile() {
   const { id } = useParams();
@@ -37,8 +38,8 @@ export default function CharityProfile() {
         </Link>
 
         <div className="glass-card" style={{ overflow: 'hidden', padding: 0 }}>
-          {charity.image && (
-            <div style={{ height: 300, background: `url(${charity.image}) center/cover`, position: 'relative' }}>
+          {(
+            <div style={{ height: 300, background: `url("${getCharityImage(charity)}") center/cover`, position: 'relative' }}>
               <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 120, background: 'linear-gradient(transparent, rgba(10,15,28,1))' }} />
             </div>
           )}
