@@ -12,9 +12,14 @@ export default function Signup() {
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
   const [charities, setCharities] = useState([]);
+  const [charitiesLoading, setCharitiesLoading] = useState(true);
+  const [charitiesError, setCharitiesError] = useState('');
 
   useEffect(() => {
-    api.getCharities().then(d => setCharities(d.charities)).catch(() => {});
+    api.getCharities()
+      .then(d => setCharities(d.charities))
+      .catch(err => setCharitiesError(err.message))
+      .finally(() => setCharitiesLoading(false));
   }, []);
 
   const handleSubmit = async (e) => {
@@ -80,12 +85,18 @@ export default function Signup() {
               <Heart size={14} style={{ color: 'var(--accent-rose)' }} /> Select a Charity
             </label>
             <select className="form-input" value={form.selectedCharity}
-              onChange={e => setForm({ ...form, selectedCharity: e.target.value })}>
+              onChange={e => setForm({ ...form, selectedCharity: e.target.value })}
+              disabled={charitiesLoading || Boolean(charitiesError)}>
               <option value="">Choose a charity (optional)</option>
               {charities.map(c => (
                 <option key={c._id} value={c._id}>{c.name}</option>
               ))}
             </select>
+            {charitiesError && (
+              <p style={{ color: 'var(--accent-rose)', fontSize: '0.8rem', marginTop: 6 }}>
+                Charities are unavailable right now: {charitiesError}
+              </p>
+            )}
           </div>
 
           <div className="form-group">

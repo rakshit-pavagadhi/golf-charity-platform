@@ -32,6 +32,11 @@ cp server/.env.example server/.env
 # Edit server/.env with your credentials
 ```
 
+`MONGODB_URI` must point to a reachable MongoDB deployment. The API connects to
+MongoDB before serving requests, so an invalid or unreachable URI causes signup
+and charity loading to fail with a database connection error. For Vercel,
+configure the same required variables in the project environment settings.
+
 ### Seed Database
 ```bash
 cd server && node seed.js

@@ -9,6 +9,7 @@ const fadeUp = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, tra
 export default function Charities() {
   const [charities, setCharities] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('');
 
@@ -25,8 +26,12 @@ export default function Charities() {
       if (category) params.set('category', category);
       const data = await api.getCharities(params.toString());
       setCharities(data.charities);
-    } catch (err) { /* ignore */ }
-    setLoading(false);
+      setError('');
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -61,6 +66,10 @@ export default function Charities() {
         {/* Charity Grid */}
         {loading ? (
           <div className="loading-container"><div className="spinner" /></div>
+        ) : error ? (
+          <div className="empty-state">
+            <p>Unable to load charities: {error}</p>
+          </div>
         ) : charities.length === 0 ? (
           <div className="empty-state">
             <p>No charities found. Try adjusting your search.</p>

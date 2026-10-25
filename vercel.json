@@ -4,6 +4,6 @@
   "outputDirectory": "client/dist",
   "installCommand": "npm install && cd server && npm install && cd ../client && npm install",
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api" }
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }

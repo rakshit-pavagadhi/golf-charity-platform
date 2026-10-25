@@ -16,7 +16,10 @@ class ApiService {
     if (this.token) headers['Authorization'] = `Bearer ${this.token}`;
 
     const res = await fetch(`${API_URL}${endpoint}`, { ...options, headers });
-    const data = await res.json();
+    const contentType = res.headers.get('content-type') || '';
+    const data = contentType.includes('application/json')
+      ? await res.json()
+      : { error: `Request failed with status ${res.status}` };
     if (!res.ok) throw new Error(data.error || 'Request failed');
     return data;
   }
