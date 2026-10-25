@@ -51,7 +51,7 @@ class ApiService {
   getDraw(id) { return this.get(`/api/draws/${id}`); }
   executeDraw(data) { return this.post('/api/draws/execute', data); }
   simulateDraw(data) { return this.post('/api/draws/simulate', data); }
-  publishDraw(id) { return this.post(`/api/draws/${id}/publish`); }
+  publishDraw(id) { return this.post('/api/draws/publish', { drawId: id }); }
 
   // Charities
   getCharities(params = '') { return this.get(`/api/charities?${params}`); }

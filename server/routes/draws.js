@@ -112,9 +112,18 @@ router.post('/simulate', auth, requireAdmin, async (req, res) => {
   }
 });
 
-// POST /api/draws/:id/publish - Admin: Publish draw results
-router.post('/:id/publish', auth, requireAdmin, async (req, res) => {
+// POST /api/draws/publish - Admin: Publish draw results (drawId in body)
+// POST /api/draws/:id/publish - Admin: Publish draw results (legacy URL form)
+router.post('/publish', auth, requireAdmin, async (req, res) => {
+  req.params.id = req.body.drawId;
+  return publishDraw(req, res);
+});
+
+async function publishDraw(req, res) {
   try {
+    if (!req.params.id) {
+      return res.status(400).json({ error: 'Draw ID is required' });
+    }
     const draw = await Draw.findById(req.params.id);
     if (!draw) {
       return res.status(404).json({ error: 'Draw not found' });
@@ -169,6 +178,8 @@ router.post('/:id/publish', auth, requireAdmin, async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
+}
+
+router.post('/:id/publish', auth, requireAdmin, publishDraw);
 
 module.exports = router;
