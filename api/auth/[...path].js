@@ -1,4 +1,4 @@
-// Explicit Vercel entrypoint for authentication routes.
 const app = require('../../server/server.js');
+const withPrefix = require('../_withPrefix');
 
-module.exports = app;
+module.exports = withPrefix(app, '/api/auth');
