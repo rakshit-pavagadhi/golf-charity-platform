@@ -72,7 +72,7 @@ class ApiService {
   // Admin
   getAdminUsers(params = '') { return this.get(`/api/admin/users?${params}`); }
   getAdminUser(id) { return this.get(`/api/admin/users/${id}`); }
-  updateAdminUser(id, data) { return this.put(`/api/admin/users/${id}`, data); }
+  updateAdminUser(id, data) { return this.put('/api/admin/users', { ...data, userId: id }); }
   updateUserScores(id, data) { return this.put(`/api/admin/users/${id}/scores`, data); }
   getAnalytics() { return this.get('/api/admin/analytics'); }
 

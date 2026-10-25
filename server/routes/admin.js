@@ -51,9 +51,12 @@ router.get('/users/:id', auth, requireAdmin, async (req, res) => {
   }
 });
 
-// PUT /api/admin/users/:id - Edit user
-router.put('/users/:id', auth, requireAdmin, async (req, res) => {
+// PUT /api/admin/users - Edit user (userId in body)
+// PUT /api/admin/users/:id - Edit user (legacy URL form)
+router.put('/users/:id?', auth, requireAdmin, async (req, res) => {
   try {
+    const userId = req.params.id || req.body.userId;
+    if (!userId) return res.status(400).json({ error: 'User ID is required' });
     const { name, email, role, subscriptionStatus } = req.body;
     const updates = {};
     if (name) updates.name = name;
@@ -61,7 +64,7 @@ router.put('/users/:id', auth, requireAdmin, async (req, res) => {
     if (role) updates.role = role;
     if (subscriptionStatus) updates.subscriptionStatus = subscriptionStatus;
 
-    const user = await User.findByIdAndUpdate(req.params.id, updates, { new: true });
+    const user = await User.findByIdAndUpdate(userId, updates, { new: true });
     if (!user) return res.status(404).json({ error: 'User not found' });
 
     res.json({ user });
